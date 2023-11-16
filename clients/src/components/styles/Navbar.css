@@ -1,0 +1,62 @@
+nav {
+  display: flex;
+  position: sticky;
+  z-index: 99;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  height: 65px;
+  padding: 10px 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+#users {
+  display: flex;
+  gap: 10px;
+}
+
+#users a, #users #icon-dashboard {
+  background-color: var(--primary-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--black-color);
+  transition: 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#users #btn-logout {
+  background-color: #FF603D;
+}
+
+#users #btn-logout:hover {
+  background-color: #A94B08;
+}
+
+#users a:hover, #users #icon-dashboard:hover {
+  background-color: var(--support-color);
+}
+
+#users #icon-dashboard {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    padding: 10px 20px;
+  }
+
+  #users #icon-dashboard {
+    display: block;
+  }
+
+  #users #btn-dashboard {
+    display: none;
+  }
+}
