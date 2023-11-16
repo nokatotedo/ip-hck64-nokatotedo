@@ -1,0 +1,80 @@
+#dashboard-table {
+  padding: 0 40px 20px;
+}
+
+table {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+th, td {
+  padding: 5px 10px;
+  text-align: start;
+}
+
+.info {
+  padding: 10px 10px;
+}
+
+.info span, .action a {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.active {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.nonactive {
+  background-color: rgb(224, 90, 67);
+  color: white;
+}
+
+.action {
+  display: flex;
+  gap: 5px;
+}
+
+.action a {
+  transition: 0.2s;
+}
+
+#btn-edit {
+  background-color: var(--primary-color);
+}
+
+#btn-edit:hover {
+  background-color: var(--support-color)
+}
+
+#btn-details {
+  background-color: var(--third-color);
+  color: white;
+}
+
+#btn-details:hover {
+  background-color: var(--toastify-color-success);
+}
+
+#btn-delete {
+  background-color: rgb(224, 90, 67);
+  color: white;
+}
+
+#btn-delete:hover {
+  background-color: #A94B08;
+}
+
+@media only screen and (max-width: 600px) {
+  #dashboard-table {
+    padding: 0 20px;
+  }
+
+  .dashboard-table {
+    overflow: auto;
+  }
+}
