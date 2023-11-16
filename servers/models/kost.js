@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'owner',
         foreignKey: 'ownerId'
       })
+      Kost.hasMany(models.Transaction, {
+        as: 'kosts',
+        foreignKey: 'kostId'
+      })
     }
   }
   Kost.init({
@@ -47,7 +51,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue:
       `Selamat datang di Kosth, tempat terbaik untuk menemukan kenyamanan dan kepraktisan dalam penyewaan kamar. Kami menyediakan pilihan kamar yang luas dan nyaman untuk kebutuhan singkat atau panjang Anda. Dengan lokasi yang strategis, Anda dapat dengan mudah mengakses berbagai fasilitas di sekitar area kost. Nikmati pengalaman menginap yang tak terlupakan dengan layanan terbaik kami. Temukan kenyamanan seperti di rumah, hanya di Kosth`
     },
-    ownerId: DataTypes.INTEGER
+    ownerId: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "off"
+    },
+    slot: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Kost',
