@@ -1,0 +1,13 @@
+#dashboard-edit {
+  padding: 0 40px 20px;
+}
+
+#dashboard-edit form {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #dashboard-edit {
+    padding: 0 20px;
+  }
+}
