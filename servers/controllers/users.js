@@ -5,11 +5,10 @@ const { createToken } = require('../helpers/jwt')
 class Users {
   static async register(req, res, next) {
     try {
-      const { email, password, role } = req.body
+      const { email, password } = req.body
       const user = await User.create({
         email,
-        password,
-        role
+        password
       })
 
       const userProfile = await UserProfile.create({
@@ -124,6 +123,37 @@ class Users {
       if(user[0] === 0) throw { name: "InvalidParams" }
 
       res.status(200).json({ message: "Succesffully update password."})
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async loginGoogle(req, res, next) {
+    try {
+      const { email, sub } = req.body
+      let user = await User.findOne({
+        where: {
+          email
+        }
+      })
+
+      if(!user) {
+        user = await User.create({
+          email,
+          password: sub
+        }, {
+          hooks: false
+        })
+
+        await UserProfile.create({
+          name: user.email.split("@")[0],
+          userId: user.id
+        })
+      }
+
+      const token = createToken({ id: user.id })
+      
+      res.status(200).json({ access_token: token })
     } catch (error) {
       next(error)
     }
