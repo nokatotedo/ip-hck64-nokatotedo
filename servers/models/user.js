@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         as: 'owner',
         foreignKey: 'ownerId'
       })
+      User.hasMany(models.Transaction, {
+        as: 'transactions',
+        foreignKey: 'clientId'
+      })
     }
   }
   User.init({
@@ -59,19 +63,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     role: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: "Role is required."
-        },
-        notNull: {
-          msg: "Role is required."
-        },
-        isIn: {
-          args: [["client", "owner"]],
-          msg: "Role format is invalid."
-        }
-      }
+      defaultValue: "client"
     }
   }, {
     hooks: {
