@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #D9DA9E;
+  --support-color: #A59F6D;
+  --secondary-color: #244D2A;
+  --third-color: #4379E1;
+  --white-color: #F3F1E7;
+  --black-color: #1c1c1c;
+  --toastify-color-error: #E05A43 !important;
+  --toastify-color-success: #586A8B !important;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: var(--black-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--black-color);
+}
+
+li {
+  list-style: none;
+}
