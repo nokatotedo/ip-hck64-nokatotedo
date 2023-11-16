@@ -8,5 +8,6 @@ router.post('/', Kosts.createMyKost)
 router.get('/', Kosts.getMyKosts)
 router.put('/:id', ownerAuth, Kosts.editMyKost)
 router.delete('/:id', ownerAuth, Kosts.deleteMyKost)
+router.patch('/:id', ownerAuth, Kosts.updateStatusKost)
 
 module.exports = router
