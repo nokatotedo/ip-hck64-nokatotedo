@@ -12,6 +12,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasOne(models.UserProfile, {
+        as: 'profiles',
+        foreignKey: 'userId'
+      })
+      User.hasMany(models.Kost, {
+        as: 'owner',
+        foreignKey: 'ownerId'
+      })
+      User.hasMany(models.Transaction, {
+        as: 'transactions',
+        foreignKey: 'clientId'
+      })
     }
   }
   User.init({
@@ -33,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
         msg: "Email already exists."
       }
     },
-    username: DataTypes.STRING,
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -49,15 +60,22 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Password must contain at least 8 characters."
         }
       }
+    },
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: "client"
     }
   }, {
+    hooks: {
+       beforeCreate: (user) => {
+        user.password = hash(user.password)
+       },
+       beforeUpdate: (user) => {
+        user.password = hash(user.password)
+       }
+    },
     sequelize,
     modelName: 'User',
   });
-
-  User.beforeCreate(async (user, _) => {
-    user.password = hash(user.password)
-  })
-
   return User;
 };
