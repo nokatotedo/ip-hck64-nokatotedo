@@ -71,10 +71,9 @@ export default function Login() {
       navigate('/')
       notification.setNotification({
         type: 'success',
-        message: 'Successfully login'
+        message: 'Successfully login.'
       })
     } catch (error) {
-      console.log(error)
       notification.setNotification({
         type: 'error',
         message: error.response.data.message

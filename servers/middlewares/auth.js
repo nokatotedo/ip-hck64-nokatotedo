@@ -45,7 +45,21 @@ async function roleAuth(req, _, next) {
     const user = await User.findByPk(id)
     if(!user) throw { name: "NotFound" }
 
-    if(user.role === "owner") next()
+    if(user.role !== "owner") throw { name: "Forbidden" }
+    next()
+  } catch (error) {
+    next(error)
+  }
+}
+
+async function clientAuth(req, _, next) {
+  try {
+    const { id } = req.user
+    const user = await User.findByPk(id)
+    if(!user) throw { name: "NotFound" }
+
+    if(user.role !== "client") throw { name: "Forbidden" }
+    next()
   } catch (error) {
     next(error)
   }
@@ -54,5 +68,6 @@ async function roleAuth(req, _, next) {
 module.exports = {
   authentication,
   ownerAuth,
-  roleAuth
+  roleAuth,
+  clientAuth
 }

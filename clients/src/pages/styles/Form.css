@@ -1,0 +1,31 @@
+#create {
+  display: flex;
+  height: calc(100vh - 65px);
+}
+
+#create > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 65px);
+  padding: 25px 50px;
+}
+
+#create-right {
+  background-color: var(--primary-color);
+}
+
+#create-right img {
+  width: 70%;
+}
+
+#create-left input, #create-left select {
+  padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  #create {
+    flex-direction: column-reverse;
+  }
+}

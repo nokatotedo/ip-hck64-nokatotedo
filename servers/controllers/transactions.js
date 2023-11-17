@@ -1,7 +1,10 @@
-require('dotenv').config()
+if(process.env.NODE_ENV !== "production") {
+  require('dotenv').config()
+}
 const midtransClient = require('midtrans-client');
 const { Transaction, Kost } = require('../models/index');
 const { Op } = require('sequelize');
+const { getDatabase, ref, set } = require("firebase/database");
 
 class Transactions {
   static async createTransaction(req, res, next) {
@@ -52,15 +55,14 @@ class Transactions {
         .then(async (transaction) => {
           let transactionToken = transaction.token
           await Transaction.create({
-            orderId: 'T-' + new Date().getTime(),
+            orderId: 'T-' + order_id,
             clientId: req.user.id,
             kostId: id,
-            status: "pending"
+            status: "pending",
+            url: transaction.redirect_url
           })
+
           res.status(200).json(transactionToken)
-        })
-        .catch(() => {
-          throw { name: "InternalServer" }
         })
     } catch (error) {
       next(error)
@@ -69,6 +71,8 @@ class Transactions {
 
   static async updateTransaction(req, res, next) {
     try {
+      const database = getDatabase()
+      
       const transaction = await Transaction.update({
         status: req.body.transaction_status
       }, {
@@ -79,10 +83,41 @@ class Transactions {
       })
 
       if(req.body.transaction_status === "settlement") {
-        await Kost.update({
-          
+        const kost = await Kost.update({
+          status: "on",
+        }, {
+          where: {
+            id: transaction[1][0].dataValues.kostId
+          },
+          returning: true
         })
+        
+        set(ref(database, `led${kost[1][0].dataValues.slot}`), 1)
+          .then(() => {
+            res.sendStatus(200)
+          })
       }
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async getTransactions(req, res, next) {
+    try {
+      const transactions = await Transaction.findAll({
+        where: {
+          clientId: req.user.id
+        },
+        order: [
+          ["id", "DESC"]
+        ],
+        include: {
+          model: Kost,
+          as: "kosts"
+        }
+      })
+
+      res.status(200).json(transactions)
     } catch (error) {
       next(error)
     }

@@ -35,14 +35,14 @@ form {
   align-items: center;
 }
 
-.input input {
+.input input, .input select {
   width: 100%;
   border: none;
   outline: none;
   padding: 10px 10px 10px 0;
 }
 
-.input label, .input i {
+.input label, .input i, .input select {
   margin: 0 10px;
 }
 

@@ -24,14 +24,31 @@ th, td {
   border-radius: 5px;
 }
 
+.info span {
+  text-transform: capitalize;
+}
+
+#owner .info span {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 .active {
   background-color: var(--secondary-color);
   color: white;
 }
 
+#owner .active:hover {
+  background-color: rgb(224, 90, 67);
+}
+
 .nonactive {
   background-color: rgb(224, 90, 67);
   color: white;
+}
+
+#owner .nonactive:hover {
+  background-color: var(--secondary-color);
 }
 
 .action {
@@ -67,6 +84,17 @@ th, td {
 
 #btn-delete:hover {
   background-color: #A94B08;
+}
+
+#btn-create {
+  width: fit-content;
+  background-color: var(--secondary-color);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#btn-create a {
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
