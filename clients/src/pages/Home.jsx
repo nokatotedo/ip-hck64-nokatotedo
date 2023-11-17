@@ -15,7 +15,7 @@ export default function Home() {
   async function getKost() {
     try {
       const { data } = await axios({
-        url: 'http://localhost:3000/kosts'
+        url: 'https://kosth-server.nokatotedo.my.id/kosts'
       })
       
       setKosts(data)

@@ -25,7 +25,7 @@ export default function Form() {
     try {
       await axios({
         method: list ? 'PUT' : 'POST',
-        url: list ? `http://localhost:3000/my/kosts/${list.id}` : 'http://localhost:3000/my/kosts',
+        url: list ? `https://kosth-server.nokatotedo.my.id/my/kosts/${list.id}` : 'https://kosth-server.nokatotedo.my.id/my/kosts',
         data: input,
         headers: {
           Authorization: "Bearer " + localStorage.access_token
@@ -48,7 +48,7 @@ export default function Form() {
   async function getKostById() {
     try {
       const { data } = await axios({
-        url: `http://localhost:3000/kosts/${id}`
+        url: `https://kosth-server.nokatotedo.my.id/kosts/${id}`
       })
 
       setSelected(data.slot)

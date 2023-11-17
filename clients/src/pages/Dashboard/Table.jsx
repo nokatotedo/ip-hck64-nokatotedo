@@ -16,7 +16,7 @@ export default function Table() {
   async function getUserRole() {
     try {
       const { data } = await axios({
-        url: "http://localhost:3000/my",
+        url: "https://kosth-server.nokatotedo.my.id/my",
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }

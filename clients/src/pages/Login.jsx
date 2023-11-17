@@ -22,7 +22,7 @@ export default function Login() {
     try {
       const { data } = await axios({
         method: 'POST',
-        url: 'http://localhost:3000/login',
+        url: 'https://kosth-server.nokatotedo.my.id/login',
         data: input
       })
 
@@ -63,7 +63,7 @@ export default function Login() {
     try {
       const { data } = await axios({
         method: "POST",
-        url: 'http://localhost:3000/login-google',
+        url: 'https://kosth-server.nokatotedo.my.id/login-google',
         data: input
       })
       

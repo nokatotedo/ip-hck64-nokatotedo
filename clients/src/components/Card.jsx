@@ -10,7 +10,7 @@ export default function Card({ kost }) {
   async function buyKost() {
     try {
       const user = await axios({
-        url: 'http://localhost:3000/my',
+        url: 'https://kosth-server.nokatotedo.my.id/my',
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }
@@ -18,7 +18,7 @@ export default function Card({ kost }) {
 
       const data = await axios({
         method: 'POST',
-        url: `http://localhost:3000/rent/${kost.id}`,
+        url: `https://kosth-server.nokatotedo.my.id/rent/${kost.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         },
