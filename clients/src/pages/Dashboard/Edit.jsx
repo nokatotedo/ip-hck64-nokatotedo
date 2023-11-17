@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import NotificationContext from "../../contexts/NotificationContext";
@@ -47,7 +48,7 @@ export default function Edit() {
       navigate('/dashboard')
       notification.setNotification({
         type: 'success',
-        message: "Successfully edit user"
+        message: "Successfully edit user."
       })
     } catch (error) {
       notification.setNotification({

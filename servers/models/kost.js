@@ -56,6 +56,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: "off"
     },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Price is required."
+        },
+        notEmpty: {
+          msg: "Price is required."
+        }
+      }
+    },
     slot: DataTypes.INTEGER
   }, {
     sequelize,

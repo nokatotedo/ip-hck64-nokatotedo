@@ -3,6 +3,7 @@
 }
 
 #profiles {
+  min-width: 30%;
   width: fit-content;
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.2);

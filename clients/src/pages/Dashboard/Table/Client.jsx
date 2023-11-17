@@ -1,8 +1,39 @@
+import { useContext, useEffect, useState } from "react"
+import NotificationContext from "../../../contexts/NotificationContext"
+import axios from "axios"
+import ClientList from "./ClientList"
+
 export default function Client() {
+  const [transactions, setTransactions] = useState(null)
+  const notification = useContext(NotificationContext)
+
+  useEffect(() => {
+    getTransactions()
+  }, [notification.notification])
+
+  async function getTransactions() {
+    try {
+      const { data } = await axios({
+        url: 'http://localhost:3000/my/payment',
+        headers: {
+          Authorization: "Bearer " + localStorage.access_token
+        }
+      })
+
+      setTransactions(data)
+    } catch (error) {
+      console.log(error)
+      notification.setNotification({
+        type: 'error',
+        message: error.response.data.message
+      })
+    }
+  }
+
   return (
     <>
       <h1>Transactions</h1>
-      <div className="dashboard-table">
+      <div className="dashboard-table" id="client">
         <table>
           <thead>
             <tr>
@@ -13,18 +44,7 @@ export default function Client() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Room A</td>
-              <td>16-11-2023</td>
-              <td className="info"><span className="nonactive">Pending</span></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Room B</td>
-              <td>16-11-2023</td>
-              <td className="info"><span className="active">Active</span></td>
-            </tr>
+            {transactions && transactions.map((transaction, i) => { return <ClientList list={transaction} key={transaction.id} index={i} /> })}
           </tbody>
         </table>
       </div>

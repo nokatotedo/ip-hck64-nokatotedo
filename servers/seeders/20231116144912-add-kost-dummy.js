@@ -18,8 +18,11 @@ module.exports = {
         address: 'Jl. Tanah Kusir 4',
         description: 'Kost mantap!!!',
         ownerId: 1,
+        slot: 1,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        price: 800000,
+        status: "off"
       }
     ])
   },

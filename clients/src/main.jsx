@@ -12,6 +12,8 @@ import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Table from './pages/Dashboard/Table.jsx';
 import Edit from './pages/Dashboard/Edit.jsx';
+import Register from './pages/Register.jsx';
+import Form from './pages/Form.jsx';
 
 function mustLogin() {
   if(!localStorage.access_token) {
@@ -57,6 +59,21 @@ const router = createBrowserRouter([
             element: <Edit />
           }
         ]
+      },
+      {
+        path: 'register',
+        element: <Register />,
+        loader: isLogin
+      },
+      {
+        path: 'dashboard/create',
+        element: <Form />,
+        loader: mustLogin
+      },
+      {
+        path: 'dashboard/edit/:id',
+        element: <Form />,
+        loader: mustLogin
       }
     ]
   },
