@@ -1,4 +1,6 @@
-require('dotenv').config()
+if(process.env.NODE_ENV !== "production") {
+  require('dotenv').config()
+}
 const midtransClient = require('midtrans-client');
 const { Transaction, Kost } = require('../models/index');
 const { Op } = require('sequelize');
@@ -63,7 +65,7 @@ class Transactions {
           res.status(200).json(transactionToken)
         })
     } catch (error) {
-      // next(error)
+      next(error)
     }
   }
 

@@ -2,6 +2,7 @@
 import { useContext } from "react"
 import NotificationContext from "../contexts/NotificationContext"
 import axios from "axios"
+import './styles/Card.css'
 
 export default function Card({ kost }) {
   const notification = useContext(NotificationContext)

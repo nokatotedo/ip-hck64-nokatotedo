@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import NotificationContext from "../contexts/NotificationContext";
 import Card from "../components/Card";
+import './styles/Home.css'
 
 export default function Home() {
   const notification = useContext(NotificationContext)
@@ -30,7 +31,9 @@ export default function Home() {
     <>
       <section id="home">
         <h1>Buy Kost</h1>
-        {kosts && kosts.map((kost) => { return <Card kost={kost} key={kost.id}/>})}
+        <div id="card-container">
+          {kosts && kosts.map((kost) => { return <Card kost={kost} key={kost.id}/>})}
+        </div>
       </section>
     </>
   )
