@@ -16,7 +16,7 @@ export default function Owner() {
   async function getMyKosts() {
     try {
       const { data } = await axios({
-        url: 'http://localhost:3000/my/kosts',
+        url: 'https://kosth-server.nokatotedo.my.id/my/kosts',
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }

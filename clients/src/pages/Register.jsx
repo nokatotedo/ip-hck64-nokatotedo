@@ -15,7 +15,7 @@ export default function Register() {
     try {
       await axios({
         method: 'POST',
-        url: 'http://localhost:3000/register',
+        url: 'https://kosth-server.nokatotedo.my.id/register',
         data: input
       })
 

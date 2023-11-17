@@ -11,7 +11,7 @@ export default function OwnerList({ list, index }) {
     try {
       await axios({
         method: "patch",
-        url: `http://localhost:3000/my/kosts/${list.id}`,
+        url: `https://kosth-server.nokatotedo.my.id/my/kosts/${list.id}`,
         headers: {
           "Authorization": "Bearer " + localStorage.access_token
         },
@@ -36,7 +36,7 @@ export default function OwnerList({ list, index }) {
     try {
       await axios({
         method: "patch",
-        url: `http://localhost:3000/my/kosts/${list.id}`,
+        url: `https://kosth-server.nokatotedo.my.id/my/kosts/${list.id}`,
         headers: {
           "Authorization": "Bearer " + localStorage.access_token
         },
@@ -61,7 +61,7 @@ export default function OwnerList({ list, index }) {
     try {
       await axios({
         method: "DELETE",
-        url:`http://localhost:3000/my/kosts/${list.id}`,
+        url:`https://kosth-server.nokatotedo.my.id/my/kosts/${list.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }

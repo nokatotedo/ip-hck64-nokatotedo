@@ -19,7 +19,7 @@ export default function Edit() {
   async function getUser() {
     try {
       const { data } = await axios({
-        url: "http://localhost:3000/my",
+        url: "https://kosth-server.nokatotedo.my.id/my",
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }
@@ -38,7 +38,7 @@ export default function Edit() {
     try {
       await axios({
         method: "PUT",
-        url: "http://localhost:3000/my",
+        url: "https://kosth-server.nokatotedo.my.id/my",
         data: input,
         headers: {
           Authorization: "Bearer " + localStorage.access_token

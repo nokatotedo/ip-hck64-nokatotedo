@@ -14,7 +14,7 @@ export default function Client() {
   async function getTransactions() {
     try {
       const { data } = await axios({
-        url: 'http://localhost:3000/my/payment',
+        url: 'https://kosth-server.nokatotedo.my.id/my/payment',
         headers: {
           Authorization: "Bearer " + localStorage.access_token
         }
